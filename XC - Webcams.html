@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi Webcam Streaming and Screen Recording</title>
+   <style>
+        #videoContainer1 {
+            float: left; /* Left-align the first camera display */
+            margin-right: 20px;
+        }
+
+        #videoContainer2 {
+            float: right; /* Right-align the second camera display */
+            margin-left: 20px;
+        }
+
+        /* Increase the size of the webcam display */
+        video {
+            width: 900px;
+            height: 720px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Multi Webcam Streaming and Screen Recording</h1>
+
+    <label for="camera1">Select Camera for Webcam 1:</label>
+    <select id="camera1">
+        <!-- Options for selecting cameras will be dynamically populated here -->
+    </select>
+    <button onclick="startStreaming('webcam1')">Start Streaming Webcam 1</button>
+    <br>
+
+    <label for="camera2">Select Camera for Webcam 2:</label>
+    <select id="camera2">
+        <!-- Options for selecting cameras will be dynamically populated here -->
+    </select>
+    <button onclick="startStreaming('webcam2')">Start Streaming Webcam 2</button>
+    <br>
+
+    <button onclick="startScreenRecording()">Start Screen Recording</button>
+    <button onclick="stopScreenRecording()">Stop Screen Recording</button>
+
+    <div id="videoContainer1">
+        <video id="webcam1" width="900" height="720" autoplay></video>
+    </div>
+
+    <div id="videoContainer2">
+        <video id="webcam2" width="900" height="720" autoplay></video>
+    </div>
+
+    <script src="https://www.webrtc-experiment.com/MultiStreamsMixer.js"></script>
+    <script>
+        // Your existing JavaScript code remains unchanged
+        var screenMediaRecorder;
+        var recordedScreenChunks = [];
+        var screenMediaStream;
+
+        // Function to start streaming for a given webcam
+        function startStreaming(webcamId) {
+            const selectedCameraId = document.getElementById(`camera${webcamId.charAt(webcamId.length - 1)}`).value;
+
+            navigator.mediaDevices.getUserMedia({ video: { deviceId: selectedCameraId } })
+                .then((webcamStream) => {
+                    document.getElementById(`${webcamId}`).srcObject = webcamStream;
+                })
+                .catch(error => console.error(`Error accessing ${webcamId} webcam:`, error));
+        }
+
+        // Function to start screen recording
+        function startScreenRecording() {
+            navigator.mediaDevices.getDisplayMedia({ video: true, audio: true })
+                .then((stream) => {
+                    recordedScreenChunks = [];
+                    screenMediaStream = stream;
+
+                    screenMediaRecorder = new MediaRecorder(stream);
+                    screenMediaRecorder.ondataavailable = (event) => {
+                        if (event.data.size > 0) {
+                            recordedScreenChunks.push(event.data);
+                        }
+                    };
+
+                    screenMediaRecorder.onstop = () => {
+                        const blob = new Blob(recordedScreenChunks, { type: "video/webm" });
+
+                        const videoURL = URL.createObjectURL(blob);
+
+                        const fileName = prompt("Enter a name for the screen recording:", "screen_recording.webm");
+                        if (fileName) {
+                            const a = document.createElement("a");
+                            a.href = videoURL;
+                            a.download = fileName;
+                            a.click();
+                        }
+                    };
+
+                    screenMediaRecorder.start();
+                })
+                .catch(error => console.error("Error accessing screen recording:", error));
+        }
+
+        // Function to stop screen recording
+        function stopScreenRecording() {
+            if (screenMediaRecorder) {
+                screenMediaRecorder.stop();
+                screenMediaStream.getTracks().forEach((track) => track.stop());
+            }
+        }
+
+        // Function to populate camera options in the dropdown menu
+        function populateCameraOptions(selectId) {
+            navigator.mediaDevices.enumerateDevices()
+                .then(devices => {
+                    const videoDevices = devices.filter(device => device.kind === 'videoinput');
+
+                    const selectElement = document.getElementById(selectId);
+                    selectElement.innerHTML = ''; // Clear previous options
+
+                    videoDevices.forEach(device => {
+                        const option = document.createElement('option');
+                        option.value = device.deviceId;
+                        option.text = device.label || `Camera ${selectElement.options.length + 1}`;
+                        selectElement.add(option);
+                    });
+                })
+                .catch(error => console.error(`Error enumerating devices:`, error));
+        }
+
+        // Populate camera options for both dropdown menus
+        populateCameraOptions('camera1');
+        populateCameraOptions('camera2');
+    </script>
+</body>
+</html>

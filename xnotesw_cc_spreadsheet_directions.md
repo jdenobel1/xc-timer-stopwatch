@@ -22,4 +22,3 @@ Cell C2 and use text value
 11. Also export results from excel as a text document to be uploaded to milesplit.
 
 
-Can use the website to add webcam results https://run.gokhs.org/cameras

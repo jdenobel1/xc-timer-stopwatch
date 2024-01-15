@@ -44,8 +44,10 @@ Feel free to contribute to this project by submitting issues or pull requests.
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+xnotestopwatch and cc.xls are licensed under their own rights
 
 ## Acknowledgments
 
 - [xnotestopwatch](http://www.xnotestopwatch.com) for providing the stopwatch tool.
+- [cc.xls](https://scottssoftware.wordpress.com/scotts-software/cross-country-scoring-software) for providing entries and automatic scoring and report generation. 
 

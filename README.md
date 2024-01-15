@@ -2,7 +2,7 @@
 xc timer | stopwatch with webcam
 # XC Webcams Project
 
-The XC Webcams project enables the use of webcams to record athletes crossing the finish line and capture their bib numbers. It is designed to work in conjunction with [xnotestopwatch](http://www.xnotestopwatch.com) for precise race timing.
+The XC Webcams project enables the use of webcams to record athletes crossing the finish line and capture their bib numbers. It is designed to work in conjunction with [xnotestopwatch](http://www.xnotestopwatch.com) for precise race timing and [cc.xls](https://scottssoftware.wordpress.com/scotts-software/cross-country-scoring-software)
 
 ## Usage
 
@@ -29,10 +29,13 @@ The XC Webcams project enables the use of webcams to record athletes crossing th
 
 - [xnotestopwatch](http://www.xnotestopwatch.com): Ensure xnotestopwatch is installed and configured for accurate race timing. The software may be used and evaluated free of charge and without time limit. However, if XNote Stopwatch fits your needs and you wish to use it without limitations of the free evaluation version, you must purchase a license (prices start from €49).
 
+- CC.xls file can be downloaded from https://scottssoftware.wordpress.com/scotts-software/cross-country-scoring-software 
+
   
 ## Note
 
 This project is not affiliated with [xnotestopwatch](http://www.xnotestopwatch.com). The application is used independently for race timing purposes.
+This project is not affiliated with [cc.xls](https://scottssoftware.wordpress.com/scotts-software/cross-country-scoring-software)
 
 ## Contributing
 

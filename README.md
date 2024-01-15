@@ -35,7 +35,20 @@ The XC Webcams project enables the use of webcams to record athletes crossing th
 ## Note
 
 This project is not affiliated with [xnotestopwatch](http://www.xnotestopwatch.com). The application is used independently for race timing purposes.
+
+XNote Stopwatch is "try-before-you-buy" software. 
+You may, free of charge, use and evaluate it without time limit. 
+However, if the software fits your needs and you wish to use it without limitations of free evaluation version, you must purchase a license. 
+Licences are LIFETIME, you will never have to pay again! All further updates of the software are free!
+
+
 This project is not affiliated with [cc.xls](https://scottssoftware.wordpress.com/scotts-software/cross-country-scoring-software)
+
+    This software is licensed under the GPLv3 (http://www.gnu.org/copyleft/gpl.html).
+
+    Use at your own risk.
+
+    If you have questions or comments on this software please visit the forums.
 
 ## Contributing
 

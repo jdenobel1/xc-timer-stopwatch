@@ -11,7 +11,7 @@ example
 
 6. Select all of the content to be copied from Team | Name | Grade | LName | FName without the column headers and don't need the event data. But use the Event to know which gender is to be included
 
-7. Paste the selected data in CC.xls file
+7. Paste the selected data in CC.xls file (https://scottssoftware.wordpress.com/scotts-software/cross-country-scoring-software)
 8. Select how you want to order the Bib column
 9. Open xnotestopwatch (if using excel integration)
 9a. Select excel integration select spreadsheet and start below below
